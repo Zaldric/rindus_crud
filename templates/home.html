@@ -1,5 +1,76 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="container">
+	<div class="row">
+		<div class='col-xl'>
+			<br />
+			{% if userList %}
+			<table class="table table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">First name</th>
+						<th scope="col">Last name</th>
+						<th scope="col">IBAN</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user_item in userList %}
+					<tr>
+						<th scope="row">{{ user_item.user_id }}</th>
+						<td>{{ user_item.first_name }}</td>
+						<td>{{ user_item.last_name }}</td>
+						<td>{{ user_item.iban }}</td>
+						<td>
+							{% ifequal user_item.admin_id user %}
+							<div class="btn-group">
+								<button type="button" class="btn btn-info">Actions</button>
+								<button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<span class="sr-only">Toggle Dropdown</span>
+								</button>
+								<div class="dropdown-menu">
 
-{% endblock content %}
+									<a class="dropdown-item" href="#">Update</a>
+									<a class="dropdown-item" href="#">Delete</a>
+								</div>
+							</div>
+						</td>
+						{% endifequal %}
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			{% else %}
+			<p>There are no users!</p>
+			<p>Add one</p>
+			{% endif %}
+			<br />
+
+			<p><a class="btn btn-success" href="#"> Add user</a></p>
+		</div>
+	</div>
+
+	<div class="pagination">
+		<span class="step-links">
+			{% if page_obj.has_previous %}
+			<a href="?page=1">&laquo; first</a>
+			<a href="?page={{ page_obj.previous_page_number }}">previous</a>
+			{% endif %}
+
+			<span class="current">
+				Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+			</span>
+
+			{% if page_obj.has_next %}
+			<a href="?page={{ page_obj.next_page_number }}">next</a>
+			<a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+			{% endif %}
+		</span>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+	{% endblock content %}

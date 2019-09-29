@@ -1,5 +1,4 @@
 from django.contrib import admin
-from rindus_crud.models import Admin, User
+from rindus_crud.models import User
 
-admin.site.register(Admin)
 admin.site.register(User)
