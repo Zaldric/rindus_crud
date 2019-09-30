@@ -5,4 +5,4 @@
 3) Run the server ``` docker-compose up -d  ```
 4) In your browser go to http://localhost:8000/
 
-### Note : Make Sure to add Google client ID and secret key in ``` settings.py ``` !
+### Note : Make Sure to install Docker!
