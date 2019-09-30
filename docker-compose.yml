@@ -1,0 +1,29 @@
+version: '3'
+
+volumes:
+  pgdata:
+
+services:
+  postgres:
+      restart: always
+      image: postgres:latest
+      ports:
+        - "5432:5432"
+  rindus_crud:
+      command: python3 manage.py runserver 0.0.0.0:8000
+      build: .
+      stop_signal: SIGINT
+      volumes:
+        - .:/code
+      ports:
+        - "8000:8000"
+      links:
+        - postgres
+      depends_on:
+        - postgres
+        - web_migrations
+
+  web_migrations:
+    build: .
+    command: python3 manage.py makemigrations --noinput
+    command: python3 manage.py migrate --noinput

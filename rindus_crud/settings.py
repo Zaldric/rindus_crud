@@ -26,9 +26,9 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '428894892161-ftllku4r224qkqfub6ocb2ut47a5gtc1.a
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '2dEkp3_Vmd5C_tF87o6M3Gj0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -96,10 +96,9 @@ WSGI_APPLICATION = 'rindus_crud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'rindus_crud_db',
-        'USER': 'rindus_admin',
-        'PASSWORD': 'rindus_admin',
-        'HOST': 'localhost',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'postgres',
         'PORT': '5432',
     }
 }
