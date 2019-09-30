@@ -22,7 +22,6 @@ class UsersList(LoginRequiredMixin, generic.ListView):
 
 class CreateUser(LoginRequiredMixin, generic.edit.CreateView):
 	login_url = '/login'
-	redirect_field_name = 'home'
 	model = User
 	fields = ('first_name', 'last_name', 'iban')
 	template_name = 'user_form.html'
@@ -49,3 +48,16 @@ class UpdateUser(LoginRequiredMixin, generic.edit.UpdateView):
 	def form_valid(self, form):
 		form.instance.admin_id = self.request.user
 		return super(UpdateUser, self).form_valid(form)
+
+class DeleteUser(LoginRequiredMixin, generic.edit.DeleteView):
+	login_url = '/login/'
+	model = User
+	success_url = reverse_lazy('home')
+	template_name = 'user_confirm_delete.html'
+
+	def get_object(self, *args, **kwargs):
+		user = super(DeleteUser, self).get_object(*args, **kwargs)
+		if not user.admin_id == self.request.user:
+			raise Http404()
+
+		return user

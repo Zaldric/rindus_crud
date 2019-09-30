@@ -4,14 +4,14 @@
 <div class="cols-xl">
   <h3>User</h3>
   <hr>
-  <br/>
+  <br />
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <br/>
+    <br />
     <input class="btn btn-success" type="submit" value="Save" />
-    <br/>
-    <hr/>
+    <br />
+    <hr />
     <p><a class="btn btn-info" href="{% url 'home' %}">Back</a></p>
   </form>
 </div>
