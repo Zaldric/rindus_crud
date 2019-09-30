@@ -19,7 +19,7 @@
 				<tbody>
 					{% for user_item in userList %}
 					<tr>
-						<th scope="row">{{ user_item.user_id }}</th>
+						<th scope="row">{{ user_item.id }}</th>
 						<td>{{ user_item.first_name }}</td>
 						<td>{{ user_item.last_name }}</td>
 						<td>{{ user_item.iban }}</td>
@@ -43,12 +43,11 @@
 				</tbody>
 			</table>
 			{% else %}
-			<p>There are no users!</p>
-			<p>Add one</p>
+			<p>Any user found!</p>
 			{% endif %}
 			<br />
 
-			<p><a class="btn btn-success" href="#"> Add user</a></p>
+			<p><a class="btn btn-success" href="{% url 'add' %}"> Add user</a></p>
 		</div>
 	</div>
 

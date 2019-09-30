@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'social_django',
     'django.contrib.admin',
     'rindus_crud',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
